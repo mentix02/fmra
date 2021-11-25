@@ -1,0 +1,83 @@
+<div *ngIf="result === undefined">
+  <h3 class="text-center">Search</h3>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-4 offset-md-4">
+      <div *ngIf="error" class="alert alert-danger alert-dismissible fade show">
+        {{ error }}
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeError()"
+        ></button>
+      </div>
+
+      <form (submit)="submit()" [formGroup]="form">
+        <div class="mb-3">
+          <label for="rollno" class="form-label">Roll No.</label>
+
+          <input
+            autofocus
+            id="rollno"
+            name="rollno"
+            type="number"
+            class="form-control"
+            formControlName="rollno"
+            [ngClass]="{
+              'is-invalid': rollno.invalid && (rollno.dirty || rollno.touched)
+            }"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="rollno.invalid && (rollno.dirty || rollno.touched)"
+          >
+            Please enter a valid roll number.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="dob" class="form-label">Date of Birth</label>
+
+          <input
+            id="dob"
+            name="dob"
+            type="date"
+            class="form-control"
+            formControlName="dob"
+            [ngClass]="{
+              'is-invalid': dob.invalid && (dob.dirty || dob.touched)
+            }"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="dob.invalid && (dob.dirty || dob.touched)"
+          >
+            Please enter a date of birth.
+          </div>
+        </div>
+
+        <div class="pt-2 d-grid gap-2">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!form.valid"
+          >
+            Search
+          </button>
+          <button
+            class="btn btn-outline-warning"
+            type="button"
+            (click)="reset()"
+          >
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="result">
+  <button class="btn btn-primary" (click)="back()">Back</button>
+  <app-result-detail [_result]="result"></app-result-detail>
+</div>

@@ -1,0 +1,13 @@
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Result Management System</a>
+    <ul
+      *ngIf="authService.isAuthenticated"
+      class="navbar-nav mb-2 mb-lg-0 d-flex"
+    >
+      <li class="nav-item">
+        <a class="nav-link clickable" (click)="signOut()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
