@@ -28,7 +28,10 @@
       <td>{{ result.dob | date }}</td>
       <td>{{ result.score }}</td>
       <td>
-        <a href="/results/edit/1" class="btn btn-outline-info">
+        <a
+          [routerLink]="['/results/edit', result.rollno]"
+          class="btn btn-outline-info"
+        >
           <i class="bi bi-pencil"></i>
         </a>
         <a (click)="deleteResult(result.rollno)" class="btn btn-outline-danger">
