@@ -13,7 +13,6 @@ router.get("/search", studentAuth, async (req, res) => {
       message: "Please provide both dob and rollno.",
     });
 
-  console.log(new Date(dob).toISOString());
   const result = await Result.findOne({ rollno, dob: new Date(dob) });
 
   if (result) return res.json(result);
